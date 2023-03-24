@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .tela{
+            background-image: linear-gradient(45deg, black, lawngreen );
+            height: 100vh;
+            color:  LightGray;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+        }
+    
+        .calculadora{
+            position: absolute;
+            background-color: black;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 20px;
+            border-radius: 20px;
+            
+        }
+
+        .button{
+            margin: 5px;
+            width: 50PX;
+            height: 50px;
+            font-size: 30px;
+            cursor: pointer;
+            background-color: LightGray;
+        }
+        .button:hover{
+            background-color: lime;
+        }
+        #igual{
+            width: 50PX;
+            height: 50px;
+            font-size: 30px;
+            cursor: pointer;
+            height: 106px;
+            background-color: LightGray;
+            
+        }
+        #zero{
+            width: 50PX;
+            height: 50px;
+            font-size: 30px;
+            cursor: pointer;
+            width: 106px;
+            background-color: LightGray;
+        }
+        #resultado{
+            background-color: lightgrey;
+            width: 230px;
+            height: 50px;
+            margin: 5px;
+            font-size: 25px;
+            color: black;
+            text-align: right;
+            padding: 5px;
+       }
+    </style>
+</head>
+<body>
+    <div class="tela">
+        <h1>Thiago Rochedo</h1>
+        <div class="calculadora">
+            <h1>Calculadora</h1>
+            <p id="resultado"></p>
+            <table>
+                <tr>
+                    <td><button class="button" onclick="clean()">C</button></td>
+                    <td><button class="button" onclick="back()"><</button></td>
+                    <td><button class="button" onclick="insert('/')">/</button></td>
+                    <td><button class="button" onclick="insert('*')">X</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" onclick="insert('7')">7</button></td>
+                    <td><button class="button" onclick="insert('8')">8</button></td>
+                    <td><button class="button" onclick="insert('9')">9</button></td>
+                    <td><button class="button" onclick="insert('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" onclick="insert('4')">4</button></td>
+                    <td><button class="button" onclick="insert('5')">5</button></td>
+                    <td><button class="button" onclick="insert('6')">6</button></td>
+                    <td><button class="button" onclick="insert('+')">+</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" onclick="insert('1')">1</button></td>
+                    <td><button class="button" onclick="insert('2')">2</button></td>
+                    <td><button class="button" onclick="insert('3')">3</button></td>
+                    <td rowspan="2"><button id="igual" onclick="calcular()">=</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button id="zero" onclick="insert('0')">0</button></td>
+                    <td><button class="button" onclick="insert('.')">.</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        function insert(numero){
+            var num = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = num + numero;
+        }
+        function clean(){
+            document.getElementById('resultado').innerHTML = "";
+        }
+        function back(){
+            var resultado =  document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1)
+        }
+        function calcular(){
+            var resultado =  document.getElementById('resultado').innerHTML;
+            if(resultado){
+                document.getElementById('resultado').innerHTML = eval(resultado);
+            }else{
+                document.getElementById('resultado').innerHTML = "Digite algo!";  
+                clean
+            }
+        }
+    </script>
+</body>
+</html>
